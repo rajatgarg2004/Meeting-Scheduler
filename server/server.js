@@ -7,7 +7,12 @@ const app = express();
 
 // Improved CORS configuration
 app.use(cors({
-  origin: ["http://localhost:3000", "http://127.0.0.1:3000", "https://meeting-scheduler-ty8j.vercel.app/", "https://meeting-scheduler-ty8j-byvgaa4zk-rajats-projects-3a8b2d11.vercel.app"], // allow both localhost and 127.0.0.1
+  origin: [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://meeting-scheduler-ty8j.vercel.app",
+    "https://meeting-scheduler-ty8j-byvgaa4zk-rajats-projects-3a8b2d11.vercel.app"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // include OPTIONS for preflight
   allowedHeaders: ["Content-Type", "Authorization"], // specify allowed headers
   credentials: true
@@ -24,11 +29,11 @@ let idCounter = 1;
 // Schedule meeting
 app.post("/meetings", (req, res) => {
   const { dateTime, attendee, notes, title } = req.body;
-  const newMeeting = { 
-    id: idCounter++, 
-    dateTime, 
-    attendee: attendee || "", 
-    notes: notes || "", 
+  const newMeeting = {
+    id: idCounter++,
+    dateTime,
+    attendee: attendee || "",
+    notes: notes || "",
     title: title || "Meeting"
   };
   meetings.push(newMeeting);
