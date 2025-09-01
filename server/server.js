@@ -7,7 +7,7 @@ const app = express();
 
 // Improved CORS configuration
 app.use(cors({
-  origin: ["http://localhost:3000", "http://127.0.0.1:3000", "https://meeting-scheduler-ty8j.vercel.app/"], // allow both localhost and 127.0.0.1
+  origin: ["http://localhost:3000", "http://127.0.0.1:3000", "https://meeting-scheduler-ty8j.vercel.app/", "https://meeting-scheduler-ty8j-byvgaa4zk-rajats-projects-3a8b2d11.vercel.app"], // allow both localhost and 127.0.0.1
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // include OPTIONS for preflight
   allowedHeaders: ["Content-Type", "Authorization"], // specify allowed headers
   credentials: true
