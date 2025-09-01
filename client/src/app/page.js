@@ -420,7 +420,8 @@ export default function Home() {
               fontSize: "16px",
               outline: "none",
               transition: "all 0.3s ease",
-              backgroundColor: "white"
+              backgroundColor: "white",
+              color:"black"
             }}
             placeholder={isLoading ? "Processing..." : "Tell me what you need... (e.g., 'Schedule a call with Sarah tomorrow at 2pm')"}
             onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSend()}
