@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+
 import axios from "axios";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -26,7 +29,7 @@ export default function Home() {
   useEffect(() => {
     const loadMeetings = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/meetings");
+  const res = await axios.get(`${API_BASE_URL}/meetings`);
         setMeetings(res.data);
       } catch (error) {
         console.error("Error loading meetings:", error);
@@ -153,7 +156,7 @@ export default function Home() {
           autoNote = notes;
         }
         
-        const res = await axios.post("http://localhost:3001/meetings", {
+  const res = await axios.post(`${API_BASE_URL}/meetings`, {
           dateTime,
           attendee: attendee || "",
           notes: autoNote,
@@ -226,7 +229,7 @@ export default function Home() {
       }
       
       try {
-        await axios.delete(`http://localhost:3001/meetings/${matchingMeeting.id}`);
+  await axios.delete(`${API_BASE_URL}/meetings/${matchingMeeting.id}`);
         return `✅ Done! I've canceled your meeting with ${matchingMeeting.attendee || 'them'} on ${matchingMeeting.dateTime}`;
       } catch (error) {
         console.error("Cancel error:", error);
@@ -262,7 +265,7 @@ export default function Home() {
           finalNotes = `${existingNotes}. ${notes}`;
         }
         
-        const res = await axios.put(`http://localhost:3001/meetings/${matchingMeeting.id}`, {
+  const res = await axios.put(`${API_BASE_URL}/meetings/${matchingMeeting.id}`, {
           notes: finalNotes
         });
         
@@ -316,7 +319,7 @@ export default function Home() {
       setMessages(prev => [...prev, { text: response, sender: "bot" }]);
       
       // Refresh meetings list
-      const res = await axios.get("http://localhost:3001/meetings");
+  const res = await axios.get(`${API_BASE_URL}/meetings`);
       setMeetings(res.data);
     } catch (error) {
       console.error("Error processing request:", error);
@@ -328,7 +331,7 @@ export default function Home() {
 
   const handleShowMeetings = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/meetings");
+  const res = await axios.get(`${API_BASE_URL}/meetings`);
       const fetchedMeetings = res.data;
       setMeetings(fetchedMeetings);
       setShowMeetings(true);
